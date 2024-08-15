@@ -1,13 +1,37 @@
 
-// Todo - add options to change letter generation: like only lowercase, no numbers, etc.
-// toggle for different letter list
-
 
 const textOutput = document.getElementById("output");
 
 const statCorrect = document.getElementById("correct");
 const statWrong = document.getElementById("wrong");
 const statAccuracy = document.getElementById("accuracy");
+
+
+// Toggle Elements - have to be added to getLetterString() params
+const toggleUppercase = document.getElementById("toggleUppercase");
+const toggleNumbers = document.getElementById("toggleNumbers");
+const toggleSpecial = document.getElementById("toggleSpecial");
+const toggleElements = [toggleNumbers, toggleUppercase, toggleSpecial];
+
+toggleElements.forEach((el) => {
+    el.addEventListener("click", () => {
+        handleOptsToggle();
+    })
+});
+
+
+function handleOptsToggle() {
+    correctCount = 0;
+    wrongCount = 0;
+    accuracy = 0;
+    document.getElementById("timer").innerText = "Time: 0 minutes 0 seconds";
+    if (isTimerStarted) {
+        toggleTimer();
+    }
+    resetToNewLevel();
+    updateStatsText();
+
+}
 
 document.addEventListener("keypress", (e) => {
     handleKeyPress(e.key);
@@ -95,15 +119,29 @@ function updateStatsText() {
     statAccuracy.innerText = `Accuracy: ${accuracy}%`;
 }
 
+function getLetterString(useUppercase, useNumbers, useSpecial) {
+    let lowercase = "abcdefghijklmnopqrstuvwxyz";
+    const numbers = "0123456789";
+    const special = "~!@#$%^&*()_-+=-?/|<>,.:;{}[]\\`'\""
+    if (useUppercase) {
+        lowercase = lowercase + lowercase.toUpperCase();
+    }
+    if (useNumbers) {
+        lowercase = lowercase + numbers;
+    }
+
+    if (useSpecial) {
+        lowercase = lowercase + special;
+    }
+
+    return lowercase;
+    
+}
 
 function generateText(length) {
-    const letters = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    letters = getLetterString(toggleUppercase.checked, toggleNumbers.checked, toggleSpecial.checked);
     let levelString = "";
     for (let i = 0; i < length; i++) {
-        // // Randomize the spaces later and add styling to make them pop out
-        // if (i % 5 == 0) {
-        //     levelString = levelString + " ";
-        // }
         levelString = levelString + letters[getRandomIntger(letters.length)];
     }
 
