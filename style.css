@@ -41,3 +41,13 @@ body {
 .stat {
     margin: 5px;
 }
+
+
+#output {
+    padding: 14px;
+    border: 1px solid black;
+}
+
+#warning {
+    font-style: italic;
+}

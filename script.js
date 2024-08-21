@@ -65,8 +65,11 @@ function handleKeyPress(k) {
             accuracy = 0;
             isNewLevel = false;
         }
+
         textIndex += 1
-        textOutput.innerText = getFillerString(textIndex) + textOutput.innerText.slice(textIndex);
+        textOutput.style.border = "1px solid green";
+
+        textOutput.innerHTML = getFillerString(textIndex) + textOutput.innerText.slice(textIndex);
 
         if (shouldAddCorrectPoint) {
             correctCount += 1;
@@ -78,6 +81,9 @@ function handleKeyPress(k) {
     } else {
         if (isNewLevel) {
             return;
+        }
+        if (shouldAddCorrectPoint) {
+            textOutput.style.border = "1px solid red";
         }
         wrongCount += 1;
         shouldAddCorrectPoint = false;
@@ -132,6 +138,10 @@ function getLetterString(useUppercase, useNumbers, useSpecial) {
 
     if (useSpecial) {
         lowercase = lowercase + special;
+        document.getElementById("warning").innerText = "Tip: Careful of the * they're hard to see.";
+    } else {
+        document.getElementById("warning").innerText = "Click anywhere on the page, and then start typing!";
+   
     }
 
     return lowercase;
