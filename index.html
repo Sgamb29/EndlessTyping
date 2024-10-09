@@ -18,6 +18,10 @@
             <label for="toggleSpecial">Include Special Characters</label>
         </fieldset>
         <p id="warning">Click anywhere on the page, and then start typing!</p>
+        <label for="toggleFingerIndicator">Toggle Correct Finger Indicator</label>
+        <input type="checkbox" name="toggleFingerIndicator" id="toggleFingerIndicator">
+        
+        <p id="fingerIndicator" hidden>Let's Type!</p>
 
         <div class="statsContainer">
             <p class="stat" id="correct">Correct Letters: 0</p>
@@ -28,6 +32,8 @@
         <button id="timerButton" class="mainButton" onclick="toggleTimer()">Start Timer</button>
 
         <p id="output">Text Goes Here</p>
+
+        <footer><em><strong>Resources:</strong></em> A Fun Site To Learn Touch Typing: <a href="https://www.typingclub.com/">https://www.typingclub.com/</a></footer>
     </div>
 
     <script src="script.js"></script>

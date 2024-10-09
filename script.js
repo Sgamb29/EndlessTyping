@@ -67,6 +67,9 @@ function handleKeyPress(k) {
         }
 
         textIndex += 1
+        
+        displayCorrectFingerName(textOutput.innerText[textIndex]);
+
         textOutput.style.border = "1px solid green";
 
         textOutput.innerHTML = getFillerString(textIndex) + textOutput.innerText.slice(textIndex);
@@ -103,6 +106,7 @@ function resetToNewLevel() {
     textOutput.innerText = generateText(levelLength);
     textIndex = 0;
     isNewLevel = true;
+    document.getElementById("fingerIndicator").innerText = "Let's Type!";
 }
 
 function getFillerString(length) {
@@ -195,3 +199,42 @@ function toggleTimer() {
 }
 
 
+const correctFingers = {
+   "left hand pinkie": ["~", "`", "1", "!", "q", "a", "z"],
+   "left hand ring": ["@", "2", "w", "s", "x"],
+   "left hand middle": ["#", "3", "e", "d", "c"],
+   "left hand index": ["$", "4", "r", "f", "v", "%", "5", "t", "g", "b"],
+   "right hand index": ["^", "6", "y", "h", "n", "&", "7", "u", "j", "m"],
+   "right hand middle": ["*", "8", "i", "k", "<", ","],
+   "right hand ring": ["(", "9", "o", "l", ">", "."],
+   "right hand pinkie": [")", "0", "p", ";", ":", "?", "/", '"', "'", "{", "}", "[", "]", "|", "\\", "+", "=", "-", "_"],
+
+}
+
+
+function displayCorrectFingerName(character) {
+    let isFound = false;
+    for (const finger in correctFingers) {
+        if (isFound) {
+            return;
+        }
+        correctFingers[finger].forEach((letter) => {
+            if (letter == character || letter.toUpperCase() == character) {
+                
+                document.getElementById("fingerIndicator").innerText = finger;
+                isFound = true;
+                return;
+            }
+        })
+    }
+}
+
+
+document.getElementById("toggleFingerIndicator").addEventListener("click", () => {
+    const toggleButton = document.getElementById("toggleFingerIndicator");
+    document.getElementById("fingerIndicator").hidden = !document.getElementById("fingerIndicator").hidden;
+});
+
+function toggleFingerIndicator() {
+
+}

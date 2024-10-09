@@ -1,6 +1,11 @@
+html {
+    height: 100%;
+    margin: 0px;
+}
 
 body {
-    height: 100vh;
+    min-height: 100%;
+    margin: 0px;
 }
 
 @media (height <= 500px) {
@@ -14,7 +19,7 @@ body {
     flex-direction: column;
     align-items: center;
     font-size: larger;
-    background-color: gray;
+    background: linear-gradient(45deg, white, gray);
     height: 100%;
     overflow-wrap: anywhere;
     padding: 80px;
@@ -46,8 +51,16 @@ body {
 #output {
     padding: 14px;
     border: 1px solid black;
+    font-size: x-large;
 }
 
 #warning {
     font-style: italic;
+}
+
+#fingerIndicator {
+    background-color: white;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 25%;
 }
