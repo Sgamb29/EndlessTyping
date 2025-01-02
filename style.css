@@ -68,6 +68,8 @@ a {
 
 input {
     margin-bottom: 15px;
+    font-size: small;
+    border: solid 1px black;
 }
 
 #homeLink {
