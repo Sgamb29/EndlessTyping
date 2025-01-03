@@ -75,3 +75,9 @@ input {
 #homeLink {
     margin-top: 30px;
 }
+
+.mainButton {
+    border: solid 1px black;
+    background-color: white;
+
+}

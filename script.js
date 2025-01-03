@@ -129,34 +129,44 @@ function updateStatsText() {
     statAccuracy.innerText = `Accuracy: ${accuracy}%`;
 }
 
+// Just generates the string for what characters to add to the text output.
+// Based off what toggle elements are checked.
 function getLetterString(useUppercase, useNumbers, useSpecial) {
     let lowercase = "abcdefghijklmnopqrstuvwxyz";
     const numbers = "0123456789";
     const special = "~!@#$%^&*()_-+=-?/|<>,.:;{}[]\\`'\""
-    if (useUppercase) {
-        lowercase = lowercase + lowercase.toUpperCase();
-    }
-    if (useNumbers) {
-        lowercase = lowercase + numbers;
+
+    const letterStrs = {
+        "lowers": lowercase,
+        "uppers": lowercase.toUpperCase(),
+        "numbers": numbers,
+        "special": special
     }
 
     if (useSpecial) {
-        lowercase = lowercase + special;
         document.getElementById("warning").innerText = "Tip: Careful of the * they're hard to see.";
     } else {
         document.getElementById("warning").innerText = "Click anywhere on the page, and then start typing!";
    
     }
 
-    return lowercase;
+    return letterStrs;
     
 }
 
 function generateText(length) {
-    letters = getLetterString(toggleUppercase.checked, toggleNumbers.checked, toggleSpecial.checked);
+    const letters = getLetterString(toggleUppercase.checked, toggleNumbers.checked, toggleSpecial.checked);
     let levelString = "";
     for (let i = 0; i < length; i++) {
-        levelString = levelString + letters[getRandomIntger(letters.length)];
+        if (i % 15 === 0 & toggleUppercase.checked) {
+            levelString = levelString + letters["uppers"][getRandomIntger(letters["uppers"].length)]
+        } else if (i % 12 === 0 & toggleNumbers.checked) {
+            levelString = levelString + letters["numbers"][getRandomIntger(letters["numbers"].length)]
+        } else if (i % 20 === 0 & toggleSpecial.checked) {
+            levelString = levelString + letters["special"][getRandomIntger(letters["special"].length)]
+        } else {
+            levelString = levelString + letters["lowers"][getRandomIntger(letters["lowers"].length)];
+        }
     }
 
     return levelString;
