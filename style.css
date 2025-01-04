@@ -79,5 +79,14 @@ input {
 .mainButton {
     border: solid 1px black;
     background-color: white;
+    font-size: medium;
+    margin: 4px;
 
+}
+
+
+.chooseText {
+    font-size: medium;
+    margin-bottom: 1px;
+    padding-bottom: 1px;
 }

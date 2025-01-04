@@ -54,6 +54,12 @@ let shouldAddCorrectPoint = true;
 
 let isNewLevel = false;
 
+function changeLength(num) {
+    levelLength = parseInt(num);
+    document.getElementById("chooseLengthText").innerText = "Choose Text Length. Current: " + num.toString();
+    resetToNewLevel();
+}
+
 function handleKeyPress(k) {
     if (k == textOutput.innerText[textIndex]) {
         if (!isTimerStarted) {
