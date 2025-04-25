@@ -10,12 +10,10 @@ html, body {
     flex-direction: column;
     align-items: center;
     font-size: larger;
-    background: linear-gradient(45deg, white, gray);
-    height: 100%;
+    background: linear-gradient(45deg, white, lightGray, white);
     overflow-wrap: anywhere;
     padding: 80px;
-
-
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     
 }
 
@@ -41,7 +39,7 @@ html, body {
 
 #output {
     padding: 14px;
-    border: 1px solid black;
+    border: 3px solid black;
     font-size: x-large;
 }
 
@@ -89,4 +87,8 @@ input {
     font-size: medium;
     margin-bottom: 1px;
     padding-bottom: 1px;
+}
+
+footer {
+    text-align: center;
 }

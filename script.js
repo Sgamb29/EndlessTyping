@@ -11,7 +11,8 @@ const statAccuracy = document.getElementById("accuracy");
 const toggleUppercase = document.getElementById("toggleUppercase");
 const toggleNumbers = document.getElementById("toggleNumbers");
 const toggleSpecial = document.getElementById("toggleSpecial");
-const toggleElements = [toggleNumbers, toggleUppercase, toggleSpecial];
+const toggleSpaces = document.getElementById("toggleSpaces");
+const toggleElements = [toggleNumbers, toggleUppercase, toggleSpecial, toggleSpaces];
 
 toggleElements.forEach((el) => {
     el.addEventListener("click", () => {
@@ -34,6 +35,11 @@ function handleOptsToggle() {
 }
 
 document.addEventListener("keypress", (e) => {
+    console.log(e.key);
+    if (e.key === " ") {
+        e.preventDefault();
+        
+    }
     handleKeyPress(e.key);
 })
 
@@ -61,7 +67,7 @@ function changeLength(num) {
 }
 
 function handleKeyPress(k) {
-    if (k == textOutput.innerText[textIndex]) {
+    if (k === textOutput.innerText[textIndex]) {
         if (!isTimerStarted) {
             toggleTimer();
         }
@@ -73,10 +79,10 @@ function handleKeyPress(k) {
         }
 
         textIndex += 1
-        
+        console.log(textOutput.innerText.length); 
         displayCorrectFingerName(textOutput.innerText[textIndex]);
 
-        textOutput.style.border = "1px solid green";
+        textOutput.style.border = "3px solid green";
 
         textOutput.innerHTML = getFillerString(textIndex) + textOutput.innerText.slice(textIndex);
 
@@ -92,7 +98,7 @@ function handleKeyPress(k) {
             return;
         }
         if (shouldAddCorrectPoint) {
-            textOutput.style.border = "1px solid red";
+            textOutput.style.border = "3px solid red";
         }
         wrongCount += 1;
         shouldAddCorrectPoint = false;
@@ -164,12 +170,14 @@ function generateText(length) {
     const letters = getLetterString(toggleUppercase.checked, toggleNumbers.checked, toggleSpecial.checked);
     let levelString = "";
     for (let i = 0; i < length; i++) {
-        if (i % 15 === 0 & toggleUppercase.checked) {
+        if (i % 15 === 0 && toggleUppercase.checked) {
             levelString = levelString + letters["uppers"][getRandomIntger(letters["uppers"].length)]
-        } else if (i % 12 === 0 & toggleNumbers.checked) {
+        } else if (i % 12 === 0 && toggleNumbers.checked) {
             levelString = levelString + letters["numbers"][getRandomIntger(letters["numbers"].length)]
-        } else if (i % 20 === 0 & toggleSpecial.checked) {
+        } else if (i % 20 === 0 && toggleSpecial.checked) {
             levelString = levelString + letters["special"][getRandomIntger(letters["special"].length)]
+        } else if (i % 8 === 0 && toggleSpaces.checked) {
+            levelString = levelString + " ";
         } else {
             levelString = levelString + letters["lowers"][getRandomIntger(letters["lowers"].length)];
         }
@@ -224,6 +232,7 @@ const correctFingers = {
    "right hand middle": ["*", "8", "i", "k", "<", ","],
    "right hand ring": ["(", "9", "o", "l", ">", "."],
    "right hand pinkie": [")", "0", "p", ";", ":", "?", "/", '"', "'", "{", "}", "[", "]", "|", "\\", "+", "=", "-", "_"],
+   "thumb": [" "],
 
 }
 
@@ -256,14 +265,14 @@ function toggleFingerIndicator() {
 }
 
 
-// Traffic
-const request = new Request("https://server.sgambapps.com/?site=endlessTyping", {
-    method: "POST",
-});
-fetch(request)
-.then(res => {
-    if (res.ok) {
-    console.log("visit counted");
-    }
-})
-.catch(err => console.log(err));
+// // Traffic
+// const request = new Request("https://server.sgambapps.com/?site=endlessTyping", {
+//     method: "POST",
+// });
+// fetch(request)
+// .then(res => {
+//     if (res.ok) {
+//     console.log("visit counted");
+//     }
+// })
+// .catch(err => console.log(err));
