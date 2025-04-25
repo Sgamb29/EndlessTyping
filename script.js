@@ -35,7 +35,7 @@ function handleOptsToggle() {
 }
 
 document.addEventListener("keypress", (e) => {
-    console.log(e.key);
+    // console.log(e.key);
     if (e.key === " ") {
         e.preventDefault();
         
@@ -79,7 +79,7 @@ function handleKeyPress(k) {
         }
 
         textIndex += 1
-        console.log(textOutput.innerText.length); 
+        // console.log(textOutput.innerText.length); 
         displayCorrectFingerName(textOutput.innerText[textIndex]);
 
         textOutput.style.border = "3px solid green";
