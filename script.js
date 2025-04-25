@@ -265,14 +265,14 @@ function toggleFingerIndicator() {
 }
 
 
-// // Traffic
-// const request = new Request("https://server.sgambapps.com/?site=endlessTyping", {
-//     method: "POST",
-// });
-// fetch(request)
-// .then(res => {
-//     if (res.ok) {
-//     console.log("visit counted");
-//     }
-// })
-// .catch(err => console.log(err));
+// Traffic
+const request = new Request("https://server.sgambapps.com/?site=endlessTyping", {
+    method: "POST",
+});
+fetch(request)
+.then(res => {
+    if (res.ok) {
+    console.log("visit counted");
+    }
+})
+.catch(err => console.log(err));
