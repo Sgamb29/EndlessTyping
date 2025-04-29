@@ -79,12 +79,23 @@ function handleKeyPress(k) {
         }
 
         textIndex += 1
-        // console.log(textOutput.innerText.length); 
         displayCorrectFingerName(textOutput.innerText[textIndex]);
 
         textOutput.style.border = "3px solid green";
 
-        textOutput.innerHTML = getFillerString(textIndex) + textOutput.innerText.slice(textIndex);
+        // Fix for special char text slice unwanted deletion::
+        if (toggleSpecial.checked) {
+            let tempText = encodeDecodeQuotes(false, textOutput.innerText);
+            tempText = getFillerString(textIndex) + tempText.slice(textIndex);
+            tempText = encodeDecodeQuotes(true, tempText);
+            textOutput.innerText = tempText;
+        } else {
+            textOutput.innerHTML = getFillerString(textIndex) + textOutput.innerText.slice(textIndex);
+        }
+        // console.log(textOutput.innerText.length);
+        // End fix.
+
+
 
         if (shouldAddCorrectPoint) {
             correctCount += 1;
@@ -187,6 +198,25 @@ function generateText(length) {
 
 }
 
+function encodeDecodeQuotes(decode=false, txt) {
+    const chars = ["'", "`", '"'];
+    const encodeStr = "QUT";
+    let count = 1;
+    if (!decode) {
+        chars.forEach((c) => {
+            txt = txt.replaceAll(c, encodeStr + count.toString());
+            count += 1;
+        });
+    } else {
+        chars.forEach((c) => {
+            txt = txt.replaceAll(encodeStr + count.toString(), c);
+            count += 1;
+        })
+    }
+    return txt;
+
+}
+
 function getRandomIntger(max) {
     return Math.floor(Math.random() * max); 
 }
@@ -266,13 +296,19 @@ function toggleFingerIndicator() {
 
 
 // Traffic
+// dev mode to True to stop fetch.
+const devMode = true;
 const request = new Request("https://server.sgambapps.com/?site=endlessTyping", {
     method: "POST",
 });
-fetch(request)
-.then(res => {
-    if (res.ok) {
-    console.log("visit counted");
-    }
-})
-.catch(err => console.log(err));
+if (!devMode) {
+
+    fetch(request)
+    .then(res => {
+        if (res.ok) {
+        console.log("visit counted");
+        }
+    })
+    .catch(err => console.log(err));
+
+}
