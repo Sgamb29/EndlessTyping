@@ -297,7 +297,7 @@ function toggleFingerIndicator() {
 
 // Traffic
 // dev mode to True to stop fetch.
-const devMode = true;
+const devMode = false;
 const request = new Request("https://server.sgambapps.com/?site=endlessTyping", {
     method: "POST",
 });
