@@ -85,7 +85,11 @@ function handleKeyPress(k) {
 
         // Fix for special char text slice unwanted deletion::
         if (toggleSpecial.checked) {
-            let tempText = encodeDecodeQuotes(false, textOutput.innerText);
+            // const isQuote = k === "'" || k === "`" || k === '"';
+            let tempText = textOutput.innerText;
+            // Got to replace the first instance so if it's a quote the encoding doesn't spill through.
+            tempText = tempText.replace(k, "*");
+            tempText = encodeDecodeQuotes(false, tempText);
             tempText = getFillerString(textIndex) + tempText.slice(textIndex);
             tempText = encodeDecodeQuotes(true, tempText);
             textOutput.innerText = tempText;
