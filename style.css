@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "hyperlegible";
+    src: url("./AtkinsonHyperlegibleNext-VariableFont_wght.ttf");
+}
+
 html, body {
     height: 100%;
     margin: 0px;
@@ -13,7 +18,7 @@ html, body {
     background: linear-gradient(45deg, white, lightGray, white);
     overflow-wrap: anywhere;
     padding: 80px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: "hyperlegible" Verdana, Geneva, Tahoma, sans-serif;
     
 }
 
@@ -91,4 +96,18 @@ input {
 
 footer {
     text-align: center;
+}
+
+.lengthButtons {
+    display: flex;
+    flex-direction: row;
+}
+
+.optionsContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    border: solid 1px black;
+    padding: 10px;
+    align-items: center;
 }

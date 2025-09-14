@@ -22,11 +22,25 @@
             <input id="toggleSpaces" type="checkbox" name="toggleSpaces">
             <label for="toggleSpaces">Include Spaces</label>
         </fieldset>
-        <p class="chooseText" id="chooseLengthText">Choose Text Length. Current: 1000</p>
         <div class="lengthButtons">
-            <button class="mainButton" onclick="changeLength(250)">250</button>
-            <button class="mainButton" onclick="changeLength(500)">500</button>
-            <button class="mainButton" onclick="changeLength(1000)">1000</button>
+            <div class="optionsContainer">
+                <p class="chooseText" id="chooseLengthText">Choose Text Length. Current: 1000</p>
+                <div class="lengthButtons">
+                    <button class="mainButton" onclick="changeLength(250)">250</button>
+                    <button class="mainButton" onclick="changeLength(500)">500</button>
+                    <button class="mainButton" onclick="changeLength(1000)">1000</button>
+                </div>
+        </div>
+            <div class="optionsContainer">
+            <p class="chooseText" id="chooseSizeText">Change Font Size. Current: larger</p>
+            <div class="lengthButtons">
+                <button class="mainButton" onclick="changeFontSize('large')">large</button>
+                <button class="mainButton" onclick="changeFontSize('larger')">larger</button>
+                <button class="mainButton" onclick="changeFontSize('x-large')">x-large</button>
+                <button class="mainButton" onclick="changeFontSize('xx-large')">xx-large</button>
+
+            </div>
+            </div>
         </div>
         <p id="warning">Click anywhere on the page, and then start typing!</p>
         <label for="toggleFingerIndicator">Toggle Correct Finger Indicator</label>
@@ -44,7 +58,8 @@
 
         <p id="output">Text Goes Here</p>
 
-        <footer><em><strong>Resources:</strong></em> A Fun Site To Learn Touch Typing: <a target="_blank" href="https://www.typingclub.com/">https://www.typingclub.com/</a><br>Other Apps: <a target="_blank" href="https://sgambapps.com">https://sgambapps.com</a></footer>
+        <footer><em><strong>Resources:</strong></em> A Fun Site To Learn Touch Typing: <a target="_blank" href="https://www.typingclub.com/">https://www.typingclub.com/</a><br>Other Apps: <a target="_blank" href="https://sgambapps.com">https://sgambapps.com</a>
+        <br><em>Tip: This site works on mobile when connected to a bluetooth keyboard and mouse.</em></footer>
     </div>
 
     <script src="script.js"></script>

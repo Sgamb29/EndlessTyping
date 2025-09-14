@@ -6,7 +6,6 @@ const statCorrect = document.getElementById("correct");
 const statWrong = document.getElementById("wrong");
 const statAccuracy = document.getElementById("accuracy");
 
-
 // Toggle Elements - have to be added to getLetterString() params
 const toggleUppercase = document.getElementById("toggleUppercase");
 const toggleNumbers = document.getElementById("toggleNumbers");
@@ -63,6 +62,7 @@ let isNewLevel = false;
 function changeLength(num) {
     levelLength = parseInt(num);
     document.getElementById("chooseLengthText").innerText = "Choose Text Length. Current: " + num.toString();
+    document.getElementById("title").innerText = `${levelLength} Random Letters To Type`;
     resetToNewLevel();
 }
 
@@ -256,6 +256,11 @@ function toggleTimer() {
 
 }
 
+function changeFontSize(size) {
+    document.getElementById("chooseSizeText").innerText = "Choose Font Size. Current: " + size.toString();
+    textOutput.style.fontSize = size;
+}
+
 
 const correctFingers = {
    "left hand pinkie": ["~", "`", "1", "!", "q", "a", "z"],
@@ -300,13 +305,20 @@ function toggleFingerIndicator() {
 
 
 // Traffic
-// dev mode to True to stop fetch.
-const devMode = false;
-const request = new Request("https://server.sgambapps.com/?site=endlessTyping", {
-    method: "POST",
-});
-if (!devMode) {
+const now = new Date();
+const dotw = now.getDay();
+const itemKey = "lastFetch";
+const lastFetch = localStorage.getItem(itemKey);
 
+if (lastFetch !== dotw.toString()) {
+    countVisit();
+    localStorage.setItem(itemKey, dotw.toString());
+}
+
+function countVisit() {
+    const request = new Request("https://server.sgambapps.com/?site=endlessTyping", {
+        method: "POST",
+    });
     fetch(request)
     .then(res => {
         if (res.ok) {
@@ -314,5 +326,4 @@ if (!devMode) {
         }
     })
     .catch(err => console.log(err));
-
 }
