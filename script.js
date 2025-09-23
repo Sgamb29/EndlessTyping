@@ -307,7 +307,7 @@ function toggleFingerIndicator() {
 // Traffic
 const now = new Date();
 const dotw = now.getDay();
-const itemKey = "lastFetch";
+const itemKey = "lastFetchTyping";
 const lastFetch = localStorage.getItem(itemKey);
 
 if (lastFetch !== dotw.toString()) {
