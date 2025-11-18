@@ -13,6 +13,10 @@ const toggleSpecial = document.getElementById("toggleSpecial");
 const toggleSpaces = document.getElementById("toggleSpaces");
 const toggleElements = [toggleNumbers, toggleUppercase, toggleSpecial, toggleSpaces];
 
+// Local Storage Keys
+const fontSizeKey = "fontSizeSave";
+const lenKey = "typeLength";
+
 toggleElements.forEach((el) => {
     el.addEventListener("click", () => {
         handleOptsToggle();
@@ -44,8 +48,18 @@ document.addEventListener("keypress", (e) => {
 
 
 
-// Adding Initial Level Text
+// Adding Initial Level Text and Font
 let levelLength = 1000;
+const savedLen = localStorage.getItem(lenKey);
+if (savedLen !== null) {
+    const tempLen = parseInt(savedLen);
+    if (tempLen === 250 || tempLen === 500 || tempLen === 1000) {
+        levelLength = tempLen;
+    }
+    document.getElementById("chooseLengthText").innerText = "Choose Text Length. Current: " + levelLength.toString();
+}
+const savedFont = localStorage.getItem(fontSizeKey);
+changeFontSize(savedFont);
 textOutput.innerText = generateText(levelLength);
 document.getElementById("title").innerText = `${levelLength} Random Letters To Type`;
 // Stats Variables
@@ -64,6 +78,7 @@ function changeLength(num) {
     document.getElementById("chooseLengthText").innerText = "Choose Text Length. Current: " + num.toString();
     document.getElementById("title").innerText = `${levelLength} Random Letters To Type`;
     resetToNewLevel();
+    localStorage.setItem(lenKey, levelLength.toString());
 }
 
 function handleKeyPress(k) {
@@ -256,11 +271,34 @@ function toggleTimer() {
 
 }
 
+
 function changeFontSize(size) {
+    const op1 = "large";
+    const op2 = "larger";
+    const op3 = "x-large";
+    const op4 = "xx-large";
+    switch (size) {
+        case op1:
+            saveStr = op1;
+            break;
+        case op2:
+            saveStr = op2;
+            break;
+        case op3:
+            saveStr = op3;
+            break;
+        case op4:
+            saveStr = op4;
+            break;
+        default:
+            size = op3;
+            saveStr = op3;
+            break;
+    }
     document.getElementById("chooseSizeText").innerText = "Choose Font Size. Current: " + size.toString();
     textOutput.style.fontSize = size;
+    localStorage.setItem(fontSizeKey, saveStr);
 }
-
 
 const correctFingers = {
    "left hand pinkie": ["~", "`", "1", "!", "q", "a", "z"],
