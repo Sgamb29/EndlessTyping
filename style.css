@@ -1,6 +1,6 @@
 @font-face {
     font-family: "hyperlegible";
-    src: url("./AtkinsonHyperlegibleNext-VariableFont_wght.ttf");
+    src: url("./AtkinsonHyperlegibleNext-Regular.ttf");
 }
 
 html, body {
@@ -18,7 +18,7 @@ html, body {
     background: linear-gradient(45deg, white, lightGray, white);
     overflow-wrap: anywhere;
     padding: 80px;
-    font-family: "hyperlegible" Verdana, Geneva, Tahoma, sans-serif;
+    font-family: "hyperlegible", Verdana, Geneva, Tahoma, sans-serif;
     
 }
 
